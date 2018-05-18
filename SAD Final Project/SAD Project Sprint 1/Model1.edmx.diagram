@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="63f1ebd1a5d2461e9b599b5187af78b7" Name="Diagram1">
+        <EntityTypeShape EntityType="DatabaseModel.customer" Width="1.5" PointX="2.625" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.employee" Width="1.5" PointX="2.625" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.invoice" Width="1.5" PointX="7.125" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.invoice_line_item" Width="1.5" PointX="9.375" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.order_line" Width="1.5" PointX="7.125" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.order" Width="1.5" PointX="4.875" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.service" Width="1.5" PointX="11.75" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="DatabaseModel.FK_orders_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK_orders_employee" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK_invoice_line_item_invoice" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK_invoice_orders" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK_invoice_line_item_services" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK_order_line_orders" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK_order_line_services" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

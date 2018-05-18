@@ -1,0 +1,78 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Home.master.cs" Inherits="SAD_Project_Sprint_1.Home" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<html lang="en">
+<head>
+    <title>Apex AUTO Store</title>
+   
+    <link href="../Style%20Sheet/Footer.css" rel="stylesheet" /> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    
+          <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.aspx">Apex Auto Store</a>
+            </div>
+              <asp:Panel ID="masterPanel" runat="server">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.aspx">Home</a></li>
+                <li><a href="About.aspx">About</a></li>
+                <%--<li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>--%>
+            </ul>
+    
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="Registration.aspx"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+               <li><a href="Login.aspx"><span class="glyphicon glyphicon-log-in"></span>Customer Login</a></li>
+                <li><a href="Employee_Login.aspx"><span class="glyphicon glyphicon-log-in"></span>Employee Login</a></li>
+                
+                  </ul>
+              </asp:Panel>
+            <asp:Panel ID="PanelCustomer" runat="server">
+                <span class="navbar-text">
+                  <asp:Label ID="Labelmaster" runat="server" ></asp:Label> 
+                </span>
+                  
+                        <ul class="nav navbar-nav navbar-right">
+                <li><a href="Index.aspx"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
+              
+                  </ul>
+            </asp:Panel>
+                      
+        </div>
+    </nav>
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+       
+    </asp:ContentPlaceHolder>
+
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="copyright">
+                        © 2017, Apex Auto Store, All rights reserved
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

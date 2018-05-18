@@ -1,0 +1,20 @@
+﻿#bck 
+{
+   background-color:#5A5A5A;
+   background-size:cover;
+   background-attachment:fixed;
+   background-position:center;
+   
+}
+#cont
+{
+background-color:#5faff3;
+background-size:cover;
+   background-attachment:fixed;
+   background-position:center;
+   color:#ffffff;
+}
+#cont.h4
+{
+    font-family:'Times New Roman', Times, serif;
+}

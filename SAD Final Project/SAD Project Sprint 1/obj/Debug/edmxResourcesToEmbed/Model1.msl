@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="DatabaseModel.customer">
+        <MappingFragment StoreEntitySet="customer">
+          <ScalarProperty Name="cus_id" ColumnName="cus_id" />
+          <ScalarProperty Name="cus_user_id" ColumnName="cus_user_id" />
+          <ScalarProperty Name="cus_pwd" ColumnName="cus_pwd" />
+          <ScalarProperty Name="cus_name" ColumnName="cus_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employees">
+      <EntityTypeMapping TypeName="DatabaseModel.employee">
+        <MappingFragment StoreEntitySet="employee">
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="emp_user_id" ColumnName="emp_user_id" />
+          <ScalarProperty Name="emp_name" ColumnName="emp_name" />
+          <ScalarProperty Name="emp_pwd" ColumnName="emp_pwd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="invoices">
+      <EntityTypeMapping TypeName="DatabaseModel.invoice">
+        <MappingFragment StoreEntitySet="invoice">
+          <ScalarProperty Name="inv_hed_id" ColumnName="inv_hed_id" />
+          <ScalarProperty Name="order_hed_id" ColumnName="order_hed_id" />
+          <ScalarProperty Name="total_cost" ColumnName="total_cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="invoice_line_item">
+      <EntityTypeMapping TypeName="DatabaseModel.invoice_line_item">
+        <MappingFragment StoreEntitySet="invoice_line_item">
+          <ScalarProperty Name="ser_id" ColumnName="ser_id" />
+          <ScalarProperty Name="inv_line_id" ColumnName="inv_line_id" />
+          <ScalarProperty Name="inv_hed_id" ColumnName="inv_hed_id" />
+          <ScalarProperty Name="ser_cost" ColumnName="ser_cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="order_line">
+      <EntityTypeMapping TypeName="DatabaseModel.order_line">
+        <MappingFragment StoreEntitySet="order_line">
+          <ScalarProperty Name="order_hed_id" ColumnName="order_hed_id" />
+          <ScalarProperty Name="order_line_id" ColumnName="order_line_id" />
+          <ScalarProperty Name="ser_id" ColumnName="ser_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="DatabaseModel.order">
+        <MappingFragment StoreEntitySet="orders">
+          <ScalarProperty Name="order_hed_id" ColumnName="order_hed_id" />
+          <ScalarProperty Name="cus_id" ColumnName="cus_id" />
+          <ScalarProperty Name="car_no" ColumnName="car_no" />
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="order_status" ColumnName="order_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="services">
+      <EntityTypeMapping TypeName="DatabaseModel.service">
+        <MappingFragment StoreEntitySet="services">
+          <ScalarProperty Name="ser_id" ColumnName="ser_id" />
+          <ScalarProperty Name="ser_name" ColumnName="ser_name" />
+          <ScalarProperty Name="ser_cost" ColumnName="ser_cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,58 @@
+﻿.login
+{
+    width:600px;height:350px;background:#0094ff;
+
+}
+.login_form
+{
+    width:400px; height:250px;background:#ffffff;border-radius:10px;
+    margin-top:6px; 
+
+
+}
+
+.login_form h1
+{
+    font-family:Calibri;font-size:20px;color:#000000;background:#ff6a00;text-align:left;
+    padding-left:15px;text-transform:uppercase;line-height:2;
+   
+    
+}
+.Username {
+    float: left;
+    margin: 20px 0px 0px 18px;
+    width: 350px;
+    height: 32px;
+    padding-left: 10px;
+    font-family: Calibri;
+    font-size: 13px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    background: url('../Images/3.png') no-repeat;background-position:320px 1px;
+
+}
+.Password {
+    float: left;
+    margin: 20px 0px 0px 18px;
+    width: 350px;
+    height: 32px;
+    padding-left: 10px;
+    font-family: Calibri;
+    font-size: 13px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    background: url('../Images/2.png') no-repeat;background-position:320px 1px;
+
+}
+.Submit{
+    background:#0094ff;color:#ffffff;font-family:Calibri;font-size:17px;font-weight:bold;
+    border:1px solid ; border-radius:6px; margin: 15px 22px 0px 0px;padding:6px 17px 4px 18px;
+    width:350px;  padding-left: 20px;
+
+}
+.forgotpassword
+{
+color:#ff0000;font-family:Calibri;font-size:17px;font-weight:bold;
+}
+
+

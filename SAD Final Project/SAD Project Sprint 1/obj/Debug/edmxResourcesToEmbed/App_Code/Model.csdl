@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="cus_id" />
+    </Key>
+    <Property Name="cus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cus_user_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cus_pwd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cus_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="orders" Relationship="Self.FK_orders_customer" FromRole="customer" ToRole="orders" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="emp_id" />
+    </Key>
+    <Property Name="emp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="emp_user_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="emp_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="emp_pwd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="orders" Relationship="Self.FK_orders_employee" FromRole="employee" ToRole="orders" />
+  </EntityType>
+  <EntityType Name="invoice">
+    <Key>
+      <PropertyRef Name="inv_hed_id" />
+    </Key>
+    <Property Name="inv_hed_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_hed_id" Type="Int32" Nullable="false" />
+    <Property Name="total_cost" Type="Double" Nullable="false" />
+    <NavigationProperty Name="invoice_line_item" Relationship="Self.FK_invoice_line_item_invoice" FromRole="invoice" ToRole="invoice_line_item" />
+    <NavigationProperty Name="order" Relationship="Self.FK_invoice_orders" FromRole="invoice" ToRole="orders" />
+  </EntityType>
+  <EntityType Name="invoice_line_item">
+    <Key>
+      <PropertyRef Name="inv_line_id" />
+    </Key>
+    <Property Name="ser_id" Type="Int32" Nullable="false" />
+    <Property Name="inv_line_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="inv_hed_id" Type="Int32" Nullable="false" />
+    <Property Name="ser_cost" Type="Double" Nullable="false" />
+    <NavigationProperty Name="invoice" Relationship="Self.FK_invoice_line_item_invoice" FromRole="invoice_line_item" ToRole="invoice" />
+    <NavigationProperty Name="service" Relationship="Self.FK_invoice_line_item_services" FromRole="invoice_line_item" ToRole="services" />
+  </EntityType>
+  <EntityType Name="order_line">
+    <Key>
+      <PropertyRef Name="order_line_id" />
+    </Key>
+    <Property Name="order_hed_id" Type="Int32" Nullable="false" />
+    <Property Name="order_line_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ser_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="order" Relationship="Self.FK_order_line_orders" FromRole="order_line" ToRole="orders" />
+    <NavigationProperty Name="service" Relationship="Self.FK_order_line_services" FromRole="order_line" ToRole="services" />
+  </EntityType>
+  <EntityType Name="order">
+    <Key>
+      <PropertyRef Name="order_hed_id" />
+    </Key>
+    <Property Name="order_hed_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cus_id" Type="Int32" Nullable="false" />
+    <Property Name="car_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="emp_id" Type="Int32" Nullable="false" />
+    <Property Name="order_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="order_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="customer" Relationship="Self.FK_orders_customer" FromRole="orders" ToRole="customer" />
+    <NavigationProperty Name="employee" Relationship="Self.FK_orders_employee" FromRole="orders" ToRole="employee" />
+    <NavigationProperty Name="invoices" Relationship="Self.FK_invoice_orders" FromRole="orders" ToRole="invoice" />
+    <NavigationProperty Name="order_line" Relationship="Self.FK_order_line_orders" FromRole="orders" ToRole="order_line" />
+  </EntityType>
+  <EntityType Name="service">
+    <Key>
+      <PropertyRef Name="ser_id" />
+    </Key>
+    <Property Name="ser_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ser_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ser_cost" Type="Double" Nullable="false" />
+    <NavigationProperty Name="invoice_line_item" Relationship="Self.FK_invoice_line_item_services" FromRole="services" ToRole="invoice_line_item" />
+    <NavigationProperty Name="order_line" Relationship="Self.FK_order_line_services" FromRole="services" ToRole="order_line" />
+  </EntityType>
+  <Association Name="FK_orders_customer">
+    <End Role="customer" Type="Self.customer" Multiplicity="1" />
+    <End Role="orders" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="cus_id" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="cus_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_orders_employee">
+    <End Role="employee" Type="Self.employee" Multiplicity="1" />
+    <End Role="orders" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="emp_id" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_invoice_line_item_invoice">
+    <End Role="invoice" Type="Self.invoice" Multiplicity="1" />
+    <End Role="invoice_line_item" Type="Self.invoice_line_item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="invoice">
+        <PropertyRef Name="inv_hed_id" />
+      </Principal>
+      <Dependent Role="invoice_line_item">
+        <PropertyRef Name="inv_hed_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_invoice_orders">
+    <End Role="orders" Type="Self.order" Multiplicity="1" />
+    <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orders">
+        <PropertyRef Name="order_hed_id" />
+      </Principal>
+      <Dependent Role="invoice">
+        <PropertyRef Name="order_hed_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_invoice_line_item_services">
+    <End Role="services" Type="Self.service" Multiplicity="1" />
+    <End Role="invoice_line_item" Type="Self.invoice_line_item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="services">
+        <PropertyRef Name="ser_id" />
+      </Principal>
+      <Dependent Role="invoice_line_item">
+        <PropertyRef Name="ser_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_order_line_orders">
+    <End Role="orders" Type="Self.order" Multiplicity="1" />
+    <End Role="order_line" Type="Self.order_line" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orders">
+        <PropertyRef Name="order_hed_id" />
+      </Principal>
+      <Dependent Role="order_line">
+        <PropertyRef Name="order_hed_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_order_line_services">
+    <End Role="services" Type="Self.service" Multiplicity="1" />
+    <End Role="order_line" Type="Self.order_line" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="services">
+        <PropertyRef Name="ser_id" />
+      </Principal>
+      <Dependent Role="order_line">
+        <PropertyRef Name="ser_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="employees" EntityType="Self.employee" />
+    <EntitySet Name="invoices" EntityType="Self.invoice" />
+    <EntitySet Name="invoice_line_item" EntityType="Self.invoice_line_item" />
+    <EntitySet Name="order_line" EntityType="Self.order_line" />
+    <EntitySet Name="orders" EntityType="Self.order" />
+    <EntitySet Name="services" EntityType="Self.service" />
+    <AssociationSet Name="FK_orders_customer" Association="Self.FK_orders_customer">
+      <End Role="customer" EntitySet="customers" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_orders_employee" Association="Self.FK_orders_employee">
+      <End Role="employee" EntitySet="employees" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_invoice_line_item_invoice" Association="Self.FK_invoice_line_item_invoice">
+      <End Role="invoice" EntitySet="invoices" />
+      <End Role="invoice_line_item" EntitySet="invoice_line_item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_invoice_orders" Association="Self.FK_invoice_orders">
+      <End Role="orders" EntitySet="orders" />
+      <End Role="invoice" EntitySet="invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_invoice_line_item_services" Association="Self.FK_invoice_line_item_services">
+      <End Role="services" EntitySet="services" />
+      <End Role="invoice_line_item" EntitySet="invoice_line_item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_order_line_orders" Association="Self.FK_order_line_orders">
+      <End Role="orders" EntitySet="orders" />
+      <End Role="order_line" EntitySet="order_line" />
+    </AssociationSet>
+    <AssociationSet Name="FK_order_line_services" Association="Self.FK_order_line_services">
+      <End Role="services" EntitySet="services" />
+      <End Role="order_line" EntitySet="order_line" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
